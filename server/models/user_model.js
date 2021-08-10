@@ -22,7 +22,7 @@ const userSchema=mongoose.Schema({
         required:true,
         trim:true
     },
-    roles:{
+    role:{
         type:String,
         enum:['user','admin'],
         default:'user'
