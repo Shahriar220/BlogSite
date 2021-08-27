@@ -8,9 +8,9 @@ const {grantAccess} =require('../../middleware/roles')
 const {sortArgsHelper}=require('../../config/helpers')
 
 const {Article}=require('../../models/article_model');
-const { Aggregate } = require('mongoose');
 
-router.route('/admin/addarticle').post(checkLoggedIn,grantAccess('createOwn','article'),async(req,res)=>{
+
+router.route('/admin/addarticle').post(checkLoggedIn,grantAccess('createAny','article'),async(req,res)=>{
     try{
         const article=new Article({
             ...req.body,
@@ -90,7 +90,7 @@ router.route("/admin/paginator").post(checkLoggedIn,grantAccess('readAny','artic
     try{
         
         const limit=req.body.limit?req.body.limit:5;
-        const aggQUery=Article.Aggregate();
+        const aggQUery=Article.aggregate();
         const options={
             page:req.body.page,
             limit,

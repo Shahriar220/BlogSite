@@ -13,6 +13,8 @@ import {isAuthUser} from './store/actions/users_action'
 import Articles from './components/dashboard/articles';
 import Article from './components/articles/index';
 import check from './hoc/authGuard';
+import AddArticle from './components/dashboard/articles/add';
+import EditArticle from './components/dashboard/articles/edit';
 
 const Routes=()=>{
   
@@ -35,6 +37,8 @@ const Routes=()=>{
       {loading ?<Loader/>:
         <MainLayout>
           <Switch>
+            <Route path="/dashboard/articles/edit/:id" component={EditArticle}/>
+            <Route path="/dashboard/articles/add" component={check(AddArticle,true)} />
             <Route path="/dashboard/articles" component={check(Articles,true)}/>
             <Route path="/dashboard/profile" component={check(Profile)}/>
             <Route path="/dashboard" component={check(Dashboard)}/>
